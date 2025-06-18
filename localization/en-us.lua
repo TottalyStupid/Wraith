@@ -1,0 +1,42 @@
+return {
+    descriptions = {
+        Joker = {
+            j_wrt_themoon = {
+                name = "The Moon",
+				text = {
+					'Every used {C:planet}Planet{} card',
+					'has a {C:green,E:1}#1# іn #2#{} chance',
+					'to be duplicated',
+					'{C:inactive,s:0.8}Unless lvl.101{}'
+				},
+				
+				unlock = {
+					"?????"
+				}
+            },
+			j_wrt_wraithJ = {
+				name = "Wraith",
+				text = {
+					'This Joker gains {C:mult}+#2#{} Mult',
+					'when a card is sold',
+					'{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'
+				}
+			},
+        }
+    },
+    misc = {
+        dictionary = {
+            a_chips="+#1#",
+            a_chips_minus="-#1#",
+            a_hands="+#1# Hands",
+            a_handsize="+#1# Hand Size",
+            a_handsize_minus="-#1# Hand Size",
+            a_mult="+#1# Mult",
+            a_mult_minus="-#1# Mult",
+            a_remaining="#1# Remaining",
+            a_sold_tally="#1#/#2# Sold",
+            a_xmult="X#1# Mult",
+            a_xmult_minus="-X#1# Mult",
+        }
+    }
+}
