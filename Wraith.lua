@@ -25,6 +25,7 @@ SMODS.Atlas({
 local jokers = {
 	themoon = {
 		key = "themoon",
+		name = "wrt-The Moon",
 		
 		unlocked = false,
 		discovered = false,
@@ -87,6 +88,7 @@ local jokers = {
 	
 	wraithJ = {
 		key = "wraithJ",
+		name = "wrt-Wraith",
 		
 		unlocked = true,
 		discovered = false,
@@ -140,6 +142,107 @@ local jokers = {
 					mult_mod = lenient_bignum(card.ability.extra.mult),
 				}
 			end
+		end,
+	},
+	
+	vouchJok = {
+		key = "vouchJok",
+		name = "wrt-Voucher Joker",
+		
+		unlocked = true,
+		discovered = false,
+		eternal_compat = true,
+		blueprint_compat = false,
+		perishable_compat = true,
+		
+		atlas = "joke_one",
+		config = {extra = {slot = 1}},
+		--vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds},
+		pos = {x = 2, y = 0},
+		rarity = 2,
+		cost = 6,
+		
+		loc_vars = function(self, info_queue, card)
+			return {vars = {card.ability.extra.slot}}
+		end,
+		
+		add_to_deck = function(self, card, from_debuff)
+			card.ability.extra.slot = math.floor(card.ability.extra.slot)
+			local mod = card.ability.extra.slot
+			SMODS.change_voucher_limit(mod)
+		end,
+		
+		remove_from_deck = function(self, card, from_debuff)
+			card.ability.extra.slot = math.floor(card.ability.extra.slot)
+			local mod = card.ability.extra.slot
+			SMODS.change_voucher_limit(-mod)
+		end,
+	},
+	
+	nothJok = {
+		key = "nothJok",
+		name = "wrt-Nothing",
+		
+		unlocked = true,
+		discovered = false,
+		eternal_compat = true,
+		blueprint_compat = false,
+		perishable_compat = false,
+		
+		atlas = "joke_one",
+		--vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds},
+		pos = {x = 4, y = 0},
+		rarity = 1,
+		cost = -3,
+	},
+	
+	smhJok = {
+		key = "smhJok",
+		name = "wrt-Something",
+		
+		unlocked = true,
+		discovered = false,
+		eternal_compat = true,
+		blueprint_compat = false,
+		perishable_compat = false,
+		joker_gate = "wrt-Nothing",
+		
+		atlas = "joke_one",
+		--vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds},
+		pos = {x = 0, y = 1},
+		rarity = 1,
+		cost = 4,
+		
+		config = {
+			extra = {
+				Xmult = 1.5,
+				type = "High Card",
+			},
+		},
+		
+		loc_vars = function(self, info_queue, card)
+			return {vars = {card.ability.extra.Xmult}}
+		end,
+		
+		calculate = function(self, card, context)
+			if
+				(context.joker_main and context.poker_hands and next(context.poker_hands[card.ability.extra.type]))
+				or context.forcetrigger
+			then
+				return {
+					message = localize({
+						type = "variable",
+						key = "a_xmult",
+						vars = { number_format(card.ability.extra.Xmult)},
+					}),
+					colour = G.C.RED,
+					Xmult_mod = lenient_bignum(card.ability.extra.Xmult),
+				}
+			end
+		end,
+		
+		in_pool = function(self)
+			return #find_joker("wrt-Nothing", true) ~= 0
 		end,
 	},
 }

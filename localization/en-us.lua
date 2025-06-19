@@ -7,7 +7,7 @@ return {
 					'Every used {C:planet}Planet{} card',
 					'has a {C:green,E:1}#1# іn #2#{} chance',
 					'to be duplicated',
-					'{C:inactive,s:0.8}Unless lvl.101{}'
+					'{C:inactive,s:0.8}Unless higher lvl.101{}'
 				},
 				
 				unlock = {
@@ -20,6 +20,26 @@ return {
 					'This Joker gains {C:mult}+#2#{} Mult',
 					'when a card is sold',
 					'{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'
+				}
+			},
+			j_wrt_vouchJok = {
+				name = "Voucher Joker",
+				text = {
+					'{C:attention}+1{} Voucher slot',
+					'available in shop'
+				}
+			},
+			j_wrt_nothJok = {
+				name = "Nothing",
+				text = {
+					'{C:inactive}Does nothing?'
+				}
+			},
+			j_wrt_smhJok = {
+				name = "Something",
+				text = {
+					'{X:mult,C:white}X#1#{} Mult{} if played hand',
+					'contains a card'
 				}
 			},
         }
