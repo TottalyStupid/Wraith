@@ -42,6 +42,18 @@ return {
 					'contains a card'
 				}
 			},
+			j_wrt_fallSun = {
+				name = "Falling Sun",
+				text = {
+					'{X:mult,C:white}X#2#{} Mult{} if scored hand',
+					'contains more than {C:attention}#1#{} cards'
+				},
+				
+				unlock = {
+					"Play a hand that contains",
+					"more than {C:attention}5{} cards"
+				}
+			},
         },
 		
 		Back = {
@@ -49,7 +61,7 @@ return {
 				name = "Tarot Deck",
 				text = {
 					"Start with {C:tarot, T:v_tarot_merchant}Tarot Mechant,",
-					"{C:attention}+1{} consumable slot"
+					"{C:attention}+1{} consumeable slot"
 				},
 				
 				unlock = {

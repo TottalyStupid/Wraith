@@ -247,6 +247,68 @@ local jokers = {
 			return #find_joker("wrt-Nothing", true) ~= 0
 		end,
 	},
+	
+	fallSun = {
+		key = "fallSun",
+		name = "wrt-Falling Sun",
+		
+		unlocked = false,
+		discovered = false,
+		eternal_compat = true,
+		blueprint_compat = true,
+		perishable_compat = true,
+		
+		atlas = "joke_one",
+		--vars = {G.GAME.probabilities.normal or 1, card.ability.extra.odds},
+		pos = {x = 1, y = 1},
+		rarity = 3,
+		cost = 9,
+		
+		config = {
+			extra = {
+				Xmult = 4,
+				cards = 6,
+				varcar = 5
+			},
+		},
+		
+		loc_vars = function(self, info_queue, card)
+			return {vars = {card.ability.extra.varcar, card.ability.extra.Xmult}}
+		end,
+		
+		calculate = function(self, card, context)
+			if
+				context.cardarea == G.jokers and context.joker_main
+				or context.forcetrigger
+			then
+				if #context.scoring_hand >= card.ability.extra.cards then
+					return {
+						message = localize({
+							type = "variable",
+							key = "a_xmult",
+							vars = {number_format(card.ability.extra.Xmult)},
+						}),
+						colour = G.C.RED,
+						Xmult_mod = lenient_bignum(card.ability.extra.Xmult),
+					}
+				end
+			end
+		end,
+		
+		check_for_unlock = function(self, args)
+			if args.type == "hand_contents" then
+				if #args.cards >= 6 then
+					unlock_card(self)
+				end
+			end
+			if args.type == "cry_lock_all" then
+				lock_card(self)
+			end
+			if args.type == "cry_unlock_all" then
+				unlock_card(self)
+			end
+		end,
+	},
 }
 
 ---- FUNCTIONS----
