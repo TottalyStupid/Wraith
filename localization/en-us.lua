@@ -42,7 +42,21 @@ return {
 					'contains a card'
 				}
 			},
-        }
+        },
+		
+		Back = {
+			b_wrt_tarot = {
+				name = "Tarot Deck",
+				text = {
+					"Start with {C:tarot, T:v_tarot_merchant}Tarot Mechant,",
+					"{C:attention}+1{} consumable slot"
+				},
+				
+				unlock = {
+					"Discover all {C:tarot}Tarot{} cards"
+				}
+			}
+		}
     },
     misc = {
         dictionary = {

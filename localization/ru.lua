@@ -43,6 +43,20 @@ return {
 				}
 			},
         }
+		
+		Back = {
+			b_wrt_tarot = {
+				name = "Колода Таро",
+				text = {
+					"Начните с ваучером {C:tarot, T:v_tarot_merchant}Торговец Таро,",
+					"{C:attention}+1{} слот для расходуемых предметов"
+				},
+				
+				unlock = {
+					"Разблокируйте все карты {C:tarot}Таро"
+				}
+			}
+		}
     },
     misc = {
         dictionary = {

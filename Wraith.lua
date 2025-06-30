@@ -1,3 +1,5 @@
+-- Some of this code was "borrowed" from Cryptid and Pokermon mods
+
 if not Wraith then
 	Wraith = {}
 end
@@ -302,6 +304,21 @@ local function create_joker(joker)
 	SMODS.Joker(joker)
 end
 
+-- load decks
+local back, load_error = SMODS.load_file("items/deck.lua")
+
+if load_error then
+	sendDebugMessage ("The error is: "..load_error)
+else
+	sendDebugMessage("Loading file deck.lua")
+	local cur_back = back()
+	
+	for i, item in ipairs(cur_back.items) do
+		SMODS.Back(item)
+	end
+end
+
+-- load jokers
 for k, v in pairs(jokers) do
 	create_joker(v)
 	
