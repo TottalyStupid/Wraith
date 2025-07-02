@@ -14,6 +14,18 @@ return {
 					"?????"
 				}
             },
+			
+			j_wrt_watercooler = {
+                name = "Watercooler",
+				text = {
+					'{X:mult,C:white}X#1#{} Mult{}'
+				},
+				
+				unlock = {
+					"?????"
+				}
+            },
+			
 			j_wrt_wraithJ = {
 				name = "Wraith",
 				text = {
@@ -25,7 +37,7 @@ return {
 			j_wrt_vouchJok = {
 				name = "Voucher Joker",
 				text = {
-					'{C:attention}+1{} Voucher slot',
+					'{C:attention}+#1#{} Voucher slot',
 					'available in shop'
 				}
 			},
@@ -45,13 +57,21 @@ return {
 			j_wrt_fallSun = {
 				name = "Falling Sun",
 				text = {
-					'{X:mult,C:white}X#2#{} Mult{} if scored hand',
+					'{X:mult,C:white}X#2#{} Mult{} if {C:attention}scored hand',
 					'contains more than {C:attention}#1#{} cards'
 				},
 				
 				unlock = {
 					"Play a hand that contains",
 					"more than {C:attention}5{} cards"
+				}
+			},
+			
+			j_wrt_taxman = {
+				name = "Taxman",
+				text = {
+					'Rental {C:attention}Jokers{} now take',
+					'{C:gold}$#1#{}, and give {X:mult,C:white}X#2#{} Mult{}' 
 				}
 			},
         },

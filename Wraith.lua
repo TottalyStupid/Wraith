@@ -380,6 +380,20 @@ else
 	end
 end
 
+-- load other jokers
+local joker, load_error = SMODS.load_file("items/misc_joker.lua")
+
+if load_error then
+	sendDebugMessage ("The error is: "..load_error)
+else
+	sendDebugMessage("Loading file misc_joker.lua")
+	local cur_file = joker()
+	
+	for i, item in ipairs(cur_file.items) do
+		SMODS.Joker(item)
+	end
+end
+
 -- load jokers
 for k, v in pairs(jokers) do
 	create_joker(v)

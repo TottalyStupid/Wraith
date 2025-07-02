@@ -14,6 +14,18 @@ return {
 					"?????"
 				}
             },
+			
+			j_wrt_watercooler = {
+                name = "Кулер для воды",
+				text = {
+					'{X:mult,C:white}X#1#{} множ.{}'
+				},
+				
+				unlock = {
+					"?????"
+				}
+            },
+			
 			j_wrt_wraithJ = {
 				name = "Призрак",
 				text = {
@@ -45,13 +57,20 @@ return {
 			j_wrt_fallSun = {
 				name = "Падающее солнце",
 				text = {
-					'{X:mult,C:white}X#2#{} множ.{} если засчитанная рука',
+					'{X:mult,C:white}X#2#{} множ.{} если {C:attention}засчитанная рука',
 					'содержит больше {C:attention}#1#{} карт' 
 				},
 				
 				unlock = {
 					'Сыграйте руку которая содержит',
 					'больше {C:attention}5{} карт'
+				}
+			},
+			j_wrt_taxman = {
+				name = "Сборщик налогов",
+				text = {
+					'Прокатные {C:attention}джокеры{} теперь берут',
+					'{C:gold}#1#${}, и дают {X:mult,C:white}X#2#{} множ.{}' 
 				}
 			},
         }
