@@ -18,7 +18,8 @@ return {
 			j_wrt_watercooler = {
                 name = "Watercooler",
 				text = {
-					'{X:mult,C:white}X#1#{} Mult{}'
+					'{X:mult,C:white}X#1#{} Mult{}, multiplied by {X:mult,C:white}X#2#{}{}',
+					'when {C:attention}The Water{} is beaten'
 				},
 				
 				unlock = {

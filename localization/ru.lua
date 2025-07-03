@@ -18,7 +18,8 @@ return {
 			j_wrt_watercooler = {
                 name = "Кулер для воды",
 				text = {
-					'{X:mult,C:white}X#1#{} множ.{}'
+					'{X:mult,C:white}X#1#{} множ.{}, умножается на {X:mult,C:white}X#2#{}{}',
+					'когда {C:attention}Вода{} повержена',
 				},
 				
 				unlock = {

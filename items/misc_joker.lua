@@ -42,7 +42,11 @@ local watercooler = {
 	perishable_compat = false,
 		
 	atlas = "joke_one",
-	config = {extra = {Xmult = 13}},
+	config = {extra = {Xmult = 13, mul = 5}},
+	gameset_config = {
+		modest = {extra = {Xmult = 13, mul = 2}},
+		mainline = {extra = {Xmult = 13, mul = 3}},
+	},
 	
 	soul_pos = {x = 4, y = 1},
 	pos = {x = 3, y = 1},
@@ -50,24 +54,33 @@ local watercooler = {
 	cost = 26,
 	
 	loc_vars = function(self, info_queue, card)
-		return {vars = {card.ability.extra.Xmult}}
+		return {vars = {card.ability.extra.Xmult, card.ability.extra.mul}}
 	end,
 	
 	calculate = function(self, card, context)
-        if card.debuff then return nil end
-        if context.joker_main and context.cardarea == G.jokers then
-			return {
-				message = localize{type='variable',key='a_xmult',vars={card.ability.extra.Xmult}},
-				colour = G.C.RED,
-				x_mult = card.ability.extra.Xmult
-			}
+		if
+			(context.end_of_round and G.GAME.blind.boss and G.GAME.blind.name == "The Water" and not context.individual and not context.repetition)
+		then
+			card.ability.extra.Xmult = lenient_bignum(to_big(card.ability.extra.Xmult) * card.ability.extra.mul)
+				card_eval_status_text(card, "extra", nil, nil, nil, {
+					message = localize({
+						type = "variable",
+						key = "a_xmult",
+						vars = {number_format(card.ability.extra.mul)},
+					}),
+				})
+			return nil, true
 		end
-		
-        if context.forcetrigger then
+	
+		if context.joker_main or context.forcetrigger then
 			return {
-				message = localize{type='variable',key='a_xmult',vars={card.ability.extra.Xmult}},
-				colour = G.C.RED,
-				x_mult = card.ability.extra.Xmult
+				message = localize({
+					type = "variable",
+					key = "a_xmult",
+					vars = {number_format(card.ability.extra.Xmult)},
+				}),
+				Xmult_mod = lenient_bignum(card.ability.extra.Xmult),
+				colour = G.C.MULT,
 			}
 		end
 	end
