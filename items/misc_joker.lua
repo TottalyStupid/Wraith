@@ -39,7 +39,7 @@ local watercooler = {
 	discovered = false,
 	eternal_compat = true,
 	blueprint_compat = false,
-	perishable_compat = false,
+	perishable_compat = true,
 		
 	atlas = "joke_one",
 	config = {extra = {Xmult = 13, mul = 5}},
@@ -86,10 +86,82 @@ local watercooler = {
 	end
 }
 
+local light = {
+	key = "light",
+	name = "wrt-light",
+		
+	unlocked = true,
+	discovered = false,
+	eternal_compat = true,
+	blueprint_compat = false,
+	perishable_compat = true,
+		
+	atlas = "joke_one",
+	config = {extra = {cards = 5, cur = 5, extra = 0.1, Xmult = 1, check = false}},
+	
+	pos = {x = 0, y = 2},
+	rarity = 2,
+	cost = 6,
+	
+	loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.cards, card.ability.extra.cur, card.ability.extra.extra, card.ability.extra.Xmult}}
+	end,
+	
+	calculate = function(self, card, context)
+		if card.ability.extra.cur <= 0 then
+			card.ability.extra.cur = card.ability.extra.cards
+			card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.extra
+		end
+	
+		if context.individual and context.cardarea == G.play and not context.blueprint and not context.retrigger_joker then
+			card.ability.extra.cur = card.ability.extra.cur - 1
+		end
+		
+		if context.joker_main or context.forcetrigger then
+			return {
+				x_mult = card.ability.extra.Xmult,
+			}
+		end
+	end
+}
+
+local golden = {
+	key = "golden",
+	name = "wrt-Golden",
+		
+	unlocked = true,
+	discovered = false,
+	eternal_compat = true,
+	blueprint_compat = true,
+	perishable_compat = true,
+		
+	atlas = "joke_one",
+	config = {extra = {money = 1}},
+	
+	pos = {x = 1, y = 2},
+	rarity = 2,
+	cost = 9,
+	
+	loc_vars = function(self, info_queue, card)
+		return {vars = {card.ability.extra.money}}
+	end,
+	
+	calculate = function(self, card, context)
+		if context.individual and context.cardarea == G.play then
+			return {
+				dollars = lenient_bignum(card.ability.extra.money),
+				card = card,
+			}
+		end
+	end
+}
+
 return {
 	name = "Misc. Jokers",
 	items = {
 		--taxman,
-		watercooler
+		watercooler,
+		light,
+		golden
 	},
 }

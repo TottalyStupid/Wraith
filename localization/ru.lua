@@ -74,7 +74,24 @@ return {
 					'{C:gold}#1#${}, и дают {X:mult,C:white}X#2#{} множ.{}' 
 				}
 			},
-        }
+			
+			j_wrt_light = {
+				name = "Светлый джокер",
+				text = {
+					'Когда {C:attention}#1#{} {C:inactive}(#2#){} карт засчитано',
+					'этот джокер дает на {X:mult,C:white}X#3#{} множ. больше{}',
+					'{C:inactive}(Сейчас {X:mult,C:white}X#4#{} {C:inactive}множ.{})'
+				}
+			},
+			
+			j_wrt_golden = {
+				name = "Золотой джокер",
+				text = {
+					'Игральные карты дают',
+					'{C:gold}$#1#{} когда засчитаны'
+				}
+			},
+        },
 		
 		Back = {
 			b_wrt_tarot = {

@@ -75,6 +75,23 @@ return {
 					'{C:gold}$#1#{}, and give {X:mult,C:white}X#2#{} Mult{}' 
 				}
 			},
+			
+			j_wrt_light = {
+				name = "Light Joker",
+				text = {
+					'When {C:attention}#1#{} {C:inactive}(#2#){} cards are scored',
+					'this Joker gains {X:mult,C:white}X#3#{} Mult{}',
+					'{C:inactive}(Currently {X:mult,C:white}X#4#{} {C:inactive}Mult{})'
+				}
+			},
+			
+			j_wrt_golden = {
+				name = "Golden Joker",
+				text = {
+					'Playing cards give', 
+					'{C:gold}$#1#{} when scored'
+				}
+			},
         },
 		
 		Back = {
